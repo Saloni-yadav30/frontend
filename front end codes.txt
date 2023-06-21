@@ -820,6 +820,139 @@ LABSHEET 10(JQuery)
 	</body>
 </html>
 
-______________________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________________________________________________
+LABSHEET 11(ANGULAR JS)
+
+Practice1: AngularJS Expressions, strings, arrays. Objects
+<!DOCTYPE html>
+<html>
+<head>
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></s
+cript>
+</head>
+<body>
+<div ng-app>
+<p>Example expression: {{ 10 + 5 }}</p>
+<div ng-app="" ng-init="firstName='Geo';lastName='Kumar'">
+<p>The Complete name is: {{ firstName + " " + lastName }}</p>
+</div>
+<div ng-app="" ng-init="quantity=3;cost=100">
+<p>Total amount rupees: <span ng-bind="quantity * cost"></span></p>
+</div>
+<div ng-app="" ng-init="person={firstName:'Geo',lastName:'Kumar'}">
+<p>The First name is {{ person.firstName }}</p>
+</div>
+<div ng-app="" ng-init="points=[11,25,13,12,130]">
+<p>The second result is <span ng-bind="points[1]"></span></p>
+</div>
+</div>
+</body>
+</html>
 
 
+Practice2: AngularJS Modules
+<html>
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></s
+cript>
+<body>
+<!--// adding a controller-->
+<div ng-app="myApp" ng-controller="myCtrl">
+{{ firstName + " " + lastName }}
+</div>
+<script>
+var app = angular.module("myApp", []); // creating a module
+app.controller("myCtrl", function ($scope) {
+$scope.firstName = "Laya";
+$scope.lastName = "babu";
+});
+</script>
+</body>
+</html>
+
+
+Practice3: AngularJS Directives
+<html>
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></s
+cript>
+<body>
+<div data-ng-app="" data-ng-init="quantity=9;price=125">
+<h2>Cost Calculator</h2>
+Quantity: <input type="number" ng-model="quantity" />
+Price: <input type="number" ng-model="price" />
+<p><b>Total in rupees:</b> {{quantity * price}}</p>
+</div>
+</body>
+</html>
+
+
+Practice4: ng-model
+<html>
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></s
+cript>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+Name: <input ng-model="name" />
+</div>
+<script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function ($scope) {
+$scope.name = "Laya babu";
+});
+</script>
+<p>
+Use the ng-model directive to bind the value of the input field to a
+property made in the controller.
+</p>
+</body>
+</html>
+
+
+Practice5: two-way binding
+<html>
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></s
+cript>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+Name: <input ng-model="firstname" />
+<h1>{{firstname}}</h1>
+</div>
+<script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function ($scope) {
+$scope.firstname = "John";
+$scope.lastname = "Doe";
+});
+</script>
+<p>
+Change the name inside the input field, and the model data will change
+automatically, and therefore also the header will change its value.
+</p>
+</body>
+</html>
+
+Practice6: AngularJS Controllers
+<html>
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></s
+cript>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+First Name: <input type="text" ng-model="firstName" /><br />
+Last Name: <input type="text" ng-model="lastName" /><br />
+<br />
+Full Name: {{firstName + " " + lastName}}
+</div>
+<script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function ($scope) {
+$scope.firstName = "John";
+$scope.lastName = "Doe";
+});
+</script>
+</body>
+</html>
