@@ -1,0 +1,564 @@
+*LABSHEET-2(CANVAS)*
+<!DOCTYPE html>
+<html>
+<head>
+<title>Canvas Example</title>
+<style>
+canvas {
+border: 1px solid black;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Canvas Example</h1>
+<p>Draw on the canvas by clicking and dragging the mouse</p>
+</header>
+<article>
+<h2>Canvas</h2>
+<canvas id="myCanvas" width="400" height="400" 
+onmousedown="startDrawing(event)" onmousemove="drawLine(event)" 
+onmouseup="stopDrawing(event)"></canvas>
+</article>
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+var isDrawing = false;
+function startDrawing(event) {
+isDrawing = true;
+var x = event.clientX - canvas.offsetLeft;
+var y = event.clientY - canvas.offsetTop;
+ctx.beginPath();
+ctx.moveTo(x, y);
+}
+function drawLine(event) {
+if (isDrawing) {
+var x = event.clientX - canvas.offsetLeft;
+var y = event.clientY - canvas.offsetTop;
+ctx.lineTo(x, y);
+ctx.stroke();
+}
+}
+function stopDrawing(event) {
+isDrawing = false;
+}
+</script>
+</body>
+</html>
+_______________________________________________________________________________________________________________________________________________________________________
+*LABSHEET-10*(display of multiple ele)
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#b1").click(function(){
+    $("#div1").fadeIn(1000);
+    $("#div2").fadeIn("slow");
+    $("#div3").fadeIn("3000");
+  });
+});
+$(document).ready(function(){
+  $("#btn").click(function(){
+    $("#div1").fadeOut("slow");
+    $("#div2").fadeOut("3000");
+    $("#div3").fadeOut("6000");
+
+  });
+});
+$(document).ready(function(){
+  $("#b").click(function(){
+    $("#div1").fadeToggle("slow");
+    $("#div2").fadeToggle("1000");
+    $("#div3").fadeToggle(3000);
+  });
+});
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $("p").hide();
+  });
+  $("#show").click(function(){
+    $("p").show();
+  });
+});
+</script>
+</head>
+<body >
+<p>If you click on the "Hide" button, I will disappear.</p>
+<button id="hide">Hide</button>
+<button id="show">Show</button><br>
+<p>Demonstrate fadeIn() with different parameters.</p>
+<p>Demonstrate fadeToggle() with different speed parameters.</p>
+<button id="b1">Click to fade in boxes</button><br><br>
+<button id="btn">Click to fade out boxes</button><br><br>
+<button id="b">Fade toggle</button><br><br>
+<div id="div1" style="width:80px;height:100px;display:none;background-color:red;">Red</div><br>
+<div id="div2" style="width:80px;height:100px;display:none;background-color:green;">Green</div><br>
+<div id="div3" style="width:80px;height:80px;background-color:blue;">Blue</div>
+<img src="C:\Users\as157\OneDrive\Pictures\Saved Pictures\WhatsApp Image 2023-01-16 at 19.45.31.jpg"/>
+</body>
+</html>
+______________________________________________________________________________________________________________________________________________________________________
+*LABSHEET-12*(table of countris)
+<!DOCTYPE html>
+<html ng-app="countryApp">
+
+<head>
+  <title>Country Table</title>
+<link rel="stylesheet" 
+href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <script src="script.js"></script>
+  
+</head>
+
+<body ng-controller="CountryController">
+  <h1>Country Table</h1>
+  
+  <input type="text" ng-model="searchText" placeholder="Search by country or capital">
+  <br><br>
+<div class="col-md-3">
+ <select class="form-control" ng-model="sortBy" ng-init="sortBy='name'">
+ <option value="name">Name</option>
+ <option value="capital">Capital</option>
+ <option value="currency">Currency</option>
+ <option value="states">Number of states</option>
+ </select>
+ </div>
+  
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th ng-click="sortBy('name')">Country Name</th>
+        <th ng-click="sortBy('capital')">Capital</th>
+        <th ng-click="sortBy('currency')">Currency</th>
+        <th ng-click="sortBy('states')">Number of States</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="country in countries | filter:searchText | orderBy:sortColumn">
+        <td>{{ country.name }}</td>
+        <td>{{ country.capital }}</td>
+        <td>{{ country.currency }}</td>
+        <td>{{ country.states }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+
+</html>
+
+///////script.js//////
+angular.module('countryApp', [])
+ .controller('CountryController', function($scope) {
+ $scope.countries = [
+ { name:'india' , capital: 'delhi', currency: 5000, states: 30 },
+ { name: 'vyzak',capital: 'kolar', currency: 5000, states: 39},
+ { name: 'vyzak',capital: 'delhi', currency: 5000, states: 49 },
+ { name: 'vyzak',capital: 'delhi', currency: 5000, states: 19},
+ { name: 'vyzak',capital: 'delhi', currency: 5000, states: 29 },
+ { name: 'vyzak',capital: 'delhi', currency: 5000, states: 39},
+ { name: 'vyzak',capital: 'delhi', currency: 5000, states: 39 },
+ { name: 'vyzak',capital: 'delhi', currency: 5000, states: 39 }
+ ];
+ });
+
+______________________________________________________________________________________________________________________________________________________
+*LABSHEET-8(HOTEL REGISTRATION)**
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotel Registration</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hotel Registration</h1>
+
+  <form id="registrationForm">
+    <div>
+      <label for="customerName">Customer Name:</label>
+      <input type="text" id="customerName" name="customerName">
+      <span id="customerNameError" class="error"></span>
+    </div>
+
+    <div>
+      <label for="stayDuration">Number of days of stay:</label>
+      <input type="number" id="stayDuration" name="stayDuration" min="1">
+      <span id="stayDurationError" class="error"></span>
+    </div>
+
+    <div>
+      <label>AC or NON-AC:</label>
+      <input type="radio" id="ac" name="roomType" value="AC">
+      <label for="ac">AC</label>
+      <input type="radio" id="nonAc" name="roomType" value="NON-AC">
+      <label for="nonAc">NON-AC</label>
+      <span id="roomTypeError" class="error"></span>
+    </div>
+
+    <div>
+      <label>Room Type:</label>
+      <input type="checkbox" id="single" name="roomTypes[]" value="Single">
+      <label for="single">Single</label>
+      <input type="checkbox" id="double" name="roomTypes[]" value="Double">
+      <label for="double">Double</label>
+      <span id="roomTypesError" class="error"></span>
+    </div>
+
+    <div>
+      <label for="place">Place:</label>
+      <input type="text" id="place" name="place">
+      <span id="placeError" class="error"></span>
+    </div>
+
+    <div>
+      <label for="pinCode">Pin Code:</label>
+      <input type="text" id="pinCode" name="pinCode">
+      <span id="pinCodeError" class="error"></span>
+    </div>
+
+    <div>
+      <label for="mobileNumber">Mobile Number:</label>
+      <input type="text" id="mobileNumber" name="mobileNumber">
+      <span id="mobileNumberError" class="error"></span>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    // Function to validate the form on submission
+    function validateForm(event) {
+      event.preventDefault();
+
+      // Resetting previous error messages
+      clearErrors();
+
+      // Get form inputs
+      const customerName = document.getElementById('customerName').value;
+      const stayDuration = document.getElementById('stayDuration').value;
+      const roomTypeAC = document.getElementById('ac').checked;
+      const roomTypeNonAC = document.getElementById('nonAc').checked;
+      const roomTypes = document.querySelectorAll('input[name="roomTypes[]"]:checked');
+      const place = document.getElementById('place').value;
+      const pinCode = document.getElementById('pinCode').value;
+      const mobileNumber = document.getElementById('mobileNumber').value;
+
+      let valid = true;
+
+      // Validate Customer Name
+      if (!validateName(customerName)) {
+        showError('customerName', 'Please enter a valid name (only alphabets allowed).');
+        valid = false;
+      }
+
+      // Validate Stay Duration
+      if (!validateStayDuration(stayDuration)) {
+        showError('stayDuration', 'Please enter a valid number of days (should be more than 0).');
+        valid = false;
+      }
+
+      // Validate AC or NON-AC
+      if (!roomTypeAC && !roomTypeNonAC) {
+        showError('roomTypeError', 'Please select AC or NON-AC.');
+        valid = false;
+      }
+
+      // Validate Room Type
+      if (roomTypes.length === 0) {
+        showError('roomTypesError', 'Please select at least one room type.');
+        valid = false;
+      }
+
+      // Validate Place
+      if (!validatePlace(place)) {
+        showError('placeError', 'Please enter a valid place (only alphabets allowed).');
+        valid = false;
+      }
+
+      // Validate Pin Code
+      if (!validatePinCode(pinCode)) {
+        showError('pinCodeError', 'Please enter a valid pin code (6 digits only).');
+        valid = false;
+      }
+
+      // Validate Mobile Number
+      if (!validateMobileNumber(mobileNumber)) {
+        showError('mobileNumberError', 'Please enter a valid mobile number (10 digits only).');
+        valid = false;
+      }
+
+      if (valid) {
+        alert('Registration done successfully');
+        document.getElementById('registrationForm').reset();
+      }
+    }
+
+    // Function to validate the customer name (only alphabets allowed)
+    function validateName(name) {
+      return /^[A-Za-z]+$/.test(name);
+    }
+
+    // Function to validate the number of days of stay (should be more than 0)
+    function validateStayDuration(duration) {
+      return duration > 0;
+    }
+
+    // Function to validate the place (only alphabets allowed)
+    function validatePlace(place) {
+      return /^[A-Za-z]+$/.test(place);
+    }
+
+    // Function to validate the pin code (6 digits only)
+    function validatePinCode(pinCode) {
+      return /^\d{6}$/.test(pinCode);
+    }
+
+    // Function to validate the mobile number (10 digits only)
+    function validateMobileNumber(mobileNumber) {
+      return /^\d{10}$/.test(mobileNumber);
+    }
+
+    // Function to display an error message for a specific field
+    function showError(fieldId, errorMessage) {
+      const errorSpan = document.getElementById(fieldId + 'Error');
+      errorSpan.textContent = errorMessage;
+    }
+
+    // Function to clear all error messages
+    function clearErrors() {
+      const errorSpans = document.getElementsByClassName('error');
+      for (let i = 0; i < errorSpans.length; i++) {
+        errorSpans[i].textContent = '';
+      }
+    }
+
+    // Attach form submission event listener
+    document.getElementById('registrationForm').addEventListener('submit', validateForm);
+  </script>
+</body>
+</html>
+_________________________________________________________________________________________________________________________________________________________
+*LABSHEET-9(B'DAY WISH)**
+////AjaxExample.html:////
+<html>
+<head>
+<title> Ajax Example </title>
+<style>
+body {
+font-family: Helvetica;
+text-align: center;
+}
+#birthday-greeting {
+font-size: 72px;
+color: red;
+text-transform: uppercase;
+}
+</style>
+<script>
+var myRequest = new XMLHttpRequest();
+myRequest.onreadystatechange = function () { 
+if (myRequest.readyState === 4) {
+document.getElementById('ajax-content').innerHTML = myRequest.responseText;
+}
+};
+function sendTheAJAX() {
+myRequest.open('GET', 'surprise.html');
+myRequest.send();
+document.getElementById('reveal').style.display = 'none';
+}
+</script>
+</head>
+<body>
+<h1>Today's your special day!</h1>
+<button id="reveal" onclick="sendTheAJAX()" class="button">Why's that?</button>
+<div id="ajax-content">
+</div>
+</body>
+</html>
+
+////Surprise.html:////
+<html>
+<head>
+</head>
+<body>
+<h1 id="birthday-greeting">It's your birthday!</h1>
+</body>
+</html>
+________________________________________________________________________________________________________________________________________________
+**ODD OR EVEN**
+<html>
+    <body>
+        <script type="text/javascript">
+            var n=parseInt(prompt("enter a number"));
+            
+            
+             if(n%2==0){
+                 window.alert(n+" is a even number ");}
+             else{
+                 window.alert(n+" is odd number ");}
+            
+        </script>
+    </body>
+</html>
+____________________________________________________________________________________________________________________________________________________
+**LABSHEET-13(TRIBUTE PAGE)**
+App.css:
+.avatar {
+  border-radius: 50%;
+  }
+___________________________________________________
+App.js:(main)
+import logo from './logo.svg';
+import './App.css';
+const user = {
+  name: "Dr. A. P. J. Abdul Kalam",
+  imageUrl:
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/A._P._J._Abdul_Kalam.jpg/800px-A._P._J._Abdul_Kalam.jpg",
+  imageSize: 250,
+  };
+  function App() {
+  return (
+  <>
+______________________________________________________
+  <h1>{A.P.J ABDUL KALAM}</h1>
+  <img
+  className="avatar"
+  src={user.imageUrl}
+  alt={"Photo of " + user.name}
+  style={{
+  width: user.imageSize,
+  height: user.imageSize,
+  }}
+  />
+  <h2>" Missile Man of India , The People's President "</h2>
+  <h3>Here's a time-line of his Life..</h3>
+  <p>A very simple person who lived an unpretentious lifestyle. He had a keen interest in literature and wrote poems. He never married. 
+    He always faced media himself for his failures while let others address for the success. 
+  He remained active till the very end. He died while delivering a lecture at the IIM.</p>
+  <ul>
+                <li><strong>1931</strong>Born in Rameswaram, Tamil Nadu.</li>
+                <li><strong>1954</strong>Graduated in Physics from University of Madras.</li>
+                <li><strong>1960</strong>Graduated in Aerospace Engineering from Madras Institute of Technology.</li>
+                <li><strong>1961</strong>Joined DRDO as a scientist.</li>
+                <li><strong>1969</strong>Joined Space Research at ISRO.</li>
+                <li><strong>1980</strong>Became the project Director for India's First Indegenous Satellite Program.</li>
+                <li><strong>1980</strong>Was involved in the development of several Indegenous Missiles for India like Agni, Prithvi.</li>
+                <li><strong>1981</strong>Awarded Padma Bhushan.</li>
+                <li><strong>1990</strong>Awarded Padma Vibhushan.</li>
+                <li><strong>1992</strong>Chief Advisor for the India's Nuclear Program.</li>
+                <li><strong>1997</strong>Awarded Bharat Ratna.</li>
+                <li><strong>2002</strong>Became 11th President of India.</li>
+                <li><strong>2015</strong>The People's President passes away while doing what he loved the most, addressing students.</li>
+            </ul>   
+            <h4>For further Information visit <a href="https://en.wikipedia.org/wiki/A._P._J._Abdul_Kalam">this link</a>.</h4>
+                
+  </>
+  );
+  }
+export default App;
+_______________________________________________________________________________________________________________________________
+**LABSHEET-13(CALC)**
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Program 4</title>
+<script
+src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script
+src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+function Calculator() {
+const [firstNumber, setFirstNumber] = useState(0);
+const [secondNumber, setSecondNumber] = useState(0);
+const [result, setResult] = useState(0);
+return (
+<>
+<h1>Calculator</h1>
+<input type='number' value={firstNumber} onChange={(e) =>
+setFirstNumber(parseInt(e.target.value))} />
+<input type='number' value={secondNumber} onChange={(e) =>
+setSecondNumber(parseInt(e.target.value))} />
+<button onClick={() => setResult(firstNumber +
+secondNumber)}>Add</button>
+<button onClick={() => setResult(firstNumber -
+secondNumber)}>Subtract</button>
+<button onClick={() => setResult(firstNumber *
+secondNumber)}>Multiply</button>
+<button onClick={() => setResult(firstNumber /
+secondNumber)}>Divide</button>
+<h2>Result: {result}</h2>
+</>
+);
+}
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+root.render(<Calculator />);
+</script>
+</body>
+</html>
+______________________________________________________________________________________________________________________________________________________
+**KALAM LAB_13**
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Program 3</title>
+<script
+src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script
+src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+.avatar {
+border-radius: 50%;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const user = {
+name: "A. P. J. Abdul Kalam",
+imageUrl:
+"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/A._P._J._Abdul_Kal
+am.jpg/800px-A._P._J._Abdul_Kalam.jpg",
+imageSize: 250,
+};
+function MyApp() {
+return (
+<>
+<h1>{user.name}</h1>
+<img
+className="avatar"
+src={user.imageUrl}
+alt={"Photo of " + user.name}
+style={{
+width: user.imageSize,
+height: user.imageSize,
+}}
+/>
+</>
+);
+}
+const container = document.getElementById("root");
+const root = ReactDOM.createRoot(container);
+root.render(<MyApp />);
+</script>
+</body>
+</html>
+_______________________________________________________________________________________________________________________________________
+
+
